@@ -1,1 +1,1 @@
-# Micro Blog
+# Micro Posts

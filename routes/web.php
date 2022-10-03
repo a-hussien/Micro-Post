@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 
     // post route
-    Route::resource('posts', PostController::class)->only(['index', 'store']);
+    Route::resource('posts', PostController::class)->only(['index', 'store', 'edit', 'update']);
 
 });
 
