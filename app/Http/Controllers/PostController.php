@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Inertia\Inertia;
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
@@ -15,8 +16,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('user')->latest()->get();
-        // dd($posts);
-        return view('posts.index', ['posts' => $posts]);
+        return Inertia::render('Posts/Index', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -41,7 +43,6 @@ class PostController extends Controller
 
         $request->user()->posts()->create($validated_data);
 
-        return redirect(route('posts.index'));
     }
 
     /**
@@ -64,8 +65,6 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
-
-        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -82,8 +81,6 @@ class PostController extends Controller
         $validated_data = $request->safe()->only(['message']);
 
         $post->update($validated_data);
-
-        return redirect(route('posts.index'));
     }
 
     /**
@@ -97,7 +94,5 @@ class PostController extends Controller
        $this->authorize('delete', $post);
 
        $post->delete();
-
-       return redirect(route('posts.index'));
     }
 }
