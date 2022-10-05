@@ -17,7 +17,7 @@ export default function Index({ auth, posts }) {
 
     return (
         <AuthenticatedLayout auth={auth}>
-            <Head title="posts" />
+            <Head title="Posts" />
 
             <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
                 <form onSubmit={submit}>
@@ -28,7 +28,7 @@ export default function Index({ auth, posts }) {
                         onChange={e => setData('message', e.target.value)}
                     ></textarea>
                     <InputError message={errors.message} className="mt-2" />
-                    <PrimaryButton className="mt-4" disabled={processing}>Chirp</PrimaryButton>
+                    <PrimaryButton className="mt-4" disabled={processing}>Post</PrimaryButton>
                 </form>
 
                 <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
