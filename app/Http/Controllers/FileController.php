@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Requests\UploadFileRequest;
 
 class FileController extends Controller
@@ -17,7 +16,7 @@ class FileController extends Controller
     public function index()
     {
         $files = File::latest()->get();
-        return Inertia::render('FileUpload', compact('files'));
+        return Inertia::render('Images/FileUpload', compact('files'));
     }
 
     /**
@@ -27,7 +26,7 @@ class FileController extends Controller
      */
     public function store(UploadFileRequest $request)
     {
-       $request->validated();
+        $request->validated();
 
         $fileName = time().'.'.$request->file->extension();
 
@@ -38,6 +37,6 @@ class FileController extends Controller
             'name' => $fileName
         ]);
 
-        return redirect()->route('file.upload');
+        return redirect()->route('images.index');
     }
 }

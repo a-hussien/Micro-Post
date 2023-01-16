@@ -38,8 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->only(['index', 'store', 'edit', 'update', 'destroy']);
 
     //ReactJs Image Upload Routes
-    Route::get('file-upload', [FileController::class, 'index'])->name('file.upload');
-    Route::post('file-upload', [FileController::class, 'store'])->name('file.upload.store');
+    Route::get('/images', [FileController::class, 'index'])->name('images.index');
+    Route::post('/images', [FileController::class, 'store'])->name('images.store');
 
 });
 
