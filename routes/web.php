@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -35,6 +36,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // post routes
     Route::resource('posts', PostController::class)
             ->only(['index', 'store', 'edit', 'update', 'destroy']);
+
+    //ReactJs Image Upload Routes
+    Route::get('file-upload', [FileController::class, 'index'])->name('file.upload');
+    Route::post('file-upload', [FileController::class, 'store'])->name('file.upload.store');
 
 });
 
