@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm, usePage } from '@inertiajs/inertia-react';
+import Dropzone from 'react-dropzone';
 
 export default function FileUpload(props) {
     const { files } = usePage().props
@@ -50,19 +51,25 @@ export default function FileUpload(props) {
                                         </span>
                                     </div>
                                     <div className="mb-0">
-                                        <label className="">File</label>
-                                        <input
-                                            type="file"
-                                            className="w-full px-4 py-2"
-                                            label="File"
-                                            name="file"
-                                            onChange={(e) =>
-                                                setData("file", e.target.files[0])
-                                            }
-                                        />
-                                        <span className="text-red-600">
-                                            {errors.file}
-                                        </span>
+                                    <Dropzone
+                                        accept={{'image/*': ['.png', '.jpg']}}
+                                        multiple={true}
+                                        maxFiles={1}
+                                        onDropAccepted={acceptedFiles => setData('file', acceptedFiles[0])}
+                                    >
+                                        {({getRootProps, getInputProps}) => (
+                                            <section className='flex flex-1 flex-col items-center place-content-center px-6 py-8 border-2 border-dashed border-slate-400 bg-slate-200 rounded-md text-slate-500 cursor-pointer'>
+                                                <div {...getRootProps()}>
+                                                    <input {...getInputProps()} />
+                                                    <p>Drag and drop some files here, or click to select files</p>
+                                                </div>
+                                                <p className="text-red-600">
+                                                    {errors.file}
+                                                </p>
+                                            </section>
+
+                                        )}
+                                    </Dropzone>
                                     </div>
                                 </div>
 

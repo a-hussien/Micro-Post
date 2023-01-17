@@ -23,6 +23,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "dayjs": "^1.11.5"
+        "dayjs": "^1.11.5",
+        "react-dropzone": "^14.2.3"
     }
 }
