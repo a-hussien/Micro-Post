@@ -58,10 +58,10 @@ export default function FileUpload(props) {
                                         onDropAccepted={acceptedFiles => setData('file', acceptedFiles[0])}
                                     >
                                         {({getRootProps, getInputProps}) => (
-                                            <section className='flex flex-1 flex-col items-center place-content-center px-6 py-8 border-2 border-dashed border-slate-400 bg-slate-200 rounded-md text-slate-500 cursor-pointer'>
+                                            <section className='flex flex-1 flex-col items-center place-content-center px-6 py-8 border-2 border-dashed border-slate-400 bg-slate-200 rounded-md cursor-pointer'>
                                                 <div {...getRootProps()}>
                                                     <input {...getInputProps()} />
-                                                    <p>Drag and drop some files here, or click to select files</p>
+                                                    <p className='text-slate-500 font-semibold'>Drag and drop some files here, or click to select files</p>
                                                 </div>
                                                 <p className="text-red-600">
                                                     {errors.file}
@@ -75,7 +75,7 @@ export default function FileUpload(props) {
 
                                 {progress && (
                                   <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                                    <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" width={progress.percentage}> {progress.percentage}%</div>
+                                    <div className="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" width={progress.percentage}> {progress.percentage}%</div>
                                   </div>
                                 )}
 
@@ -91,20 +91,20 @@ export default function FileUpload(props) {
 
                             <br/>
 
-                            <h1 className='font-bold text-2xl text-center mb-2'>Uploaded File List:</h1>
+                            <h1 className='font-bold text-2xl text-center mb-4'>Uploaded Images:</h1>
                             <table className="table-fixed w-full">
                                 <thead>
                                     <tr className="bg-gray-100">
-                                        <th className="px-4 py-2 w-20">No.</th>
-                                        <th className="px-4 py-2">Title</th>
-                                        <th className="px-4 py-2 w-[300px]">Image</th>
+                                        <th className="border px-4 py-2 w-20">No.</th>
+                                        <th className="border px-4 py-2">Title</th>
+                                        <th className="border px-4 py-2 w-[200px]">Image</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {files.map(({ id, title, name }) => (
                                         <tr key={id}>
-                                            <td className="border px-4 py-2">{ id }</td>
-                                            <td className="border px-4 py-2">{ title }</td>
+                                            <td className="border px-4 py-2 text-center">{ id }</td>
+                                            <td className="border px-4 py-2">{ title.toUpperCase() }</td>
                                             <td className="border px-4 py-2">
                                                 <img src={name} width="200px" />
                                             </td>
